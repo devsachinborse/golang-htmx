@@ -1,0 +1,12 @@
+{{define "book.html"}}
+<div class="space-y-4">
+  {{if .}} {{range .}}
+  <div class="bg-gray-50 p-4 rounded-lg shadow">
+    <h2 class="text-lg font-semibold">{{.Title}}</h2>
+    <p class="text-sm text-gray-600">By {{.Author}}</p>
+  </div>
+  {{end}} {{else}}
+  <p class="text-gray-500">No books added yet.</p>
+  {{end}}
+</div>
+{{end}}

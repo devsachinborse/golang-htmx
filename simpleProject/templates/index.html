@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Info Form</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/htmx.org@1.7.0"></script>
+  </head>
+  <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+      <h1 class="text-2xl font-bold text-center mb-6">Add Book</h1>
+      <form
+        id="bookForm"
+        class="space-y-4"
+        hx-post="/submit"
+        hx-target="#bookListWrapper"
+        hx-swap="innerHTML"
+      >
+        <div>
+          <label for="title" class="block text-sm font-medium text-gray-700"
+            >Title</label
+          >
+          <input
+            type="text"
+            id="title"
+            name="title"
+            required
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div>
+          <label for="author" class="block text-sm font-medium text-gray-700"
+            >Author</label
+          >
+          <input
+            type="text"
+            id="author"
+            name="author"
+            required
+            class="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+          />
+        </div>
+        <div>
+          <button
+            type="submit"
+            class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          >
+            Add Book
+          </button>
+        </div>
+      </form>
+      <div id="bookListWrapper" class="mt-6">
+        <div id="bookList" class="space-y-4">
+          {{if .}} {{range .}}
+          <div class="bg-gray-50 p-4 rounded-lg shadow">
+            <h2 class="text-lg font-semibold">{{.Title}}</h2>
+            <p class="text-sm text-gray-600">By {{.Author}}</p>
+          </div>
+          {{end}} {{else}}
+          <p class="text-gray-500">No books added yet.</p>
+          {{end}}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
